@@ -78,6 +78,7 @@ public class TopicScreen extends Screen {
         panel.add(scroll_pane, BorderLayout.CENTER);
     }
 
+    // Method to increment the total correct answers
     public void increment(){
         this.correct_total++;
         if (correct_total < 30){
@@ -91,9 +92,11 @@ public class TopicScreen extends Screen {
         info_panel.add(info);
     }
 
+    // Method to initialize all high scores when the program is run
     public void initialize_scores(){
         List<String> scores = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Brandon Salim\\IdeaProjects\\Data_structures\\src\\OOP\\high_scores.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:\\Users\\Brandon Salim" +
+                "\\IdeaProjects\\" + "Data_structures\\src\\OOP\\high_scores.txt"))) {
             for (int i = 0; i < topics.size() - 1; i++){
                 // Assign the line to a temporary variable
                 scores.add(reader.readLine());
@@ -108,23 +111,31 @@ public class TopicScreen extends Screen {
         }
     }
 
+    // Method to set everything to 0
     public void reset_scores(){
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Brandon Salim\\IdeaProjects\\Data_structures\\src\\OOP\\high_scores.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Brandon Salim" +
+                "\\IdeaProjects\\Data_structures\\src\\OOP\\high_scores.txt"))) {
             for (JLabel high_score : high_scores) {
                 high_score.setText("High score: 0");
 
                 writer.write("0");
                 writer.newLine();
             }
+
+            for (Topic topic: topics){
+                topic.set_high_score(0);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    // Method to update scores at the end of a game
     public void update_scores(){
         JLabel tmp_label;
         int tmp_high_score;
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Brandon Salim\\IdeaProjects\\Data_structures\\src\\OOP\\high_scores.txt"))) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Brandon Salim" +
+                "\\IdeaProjects\\Data_structures\\src\\OOP\\high_scores.txt"))) {
             for (int i = 0; i < high_scores.size(); i++){
                 tmp_label = high_scores.get(i);
                 tmp_high_score = topics.get(i).get_high_score();

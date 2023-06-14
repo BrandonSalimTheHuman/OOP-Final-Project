@@ -156,7 +156,7 @@ public class Question implements ActionListener {
         // Initialize the panel, its layout, border, size and bg color
         choices_part.setLayout(new GridBagLayout());
         choices_part.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-        choices_part.setPreferredSize(new Dimension(350, 350));
+        choices_part.setPreferredSize(new Dimension(700, 350));
         choices_part.setBackground(new Color(0xf0d9fc));
 
         // Initialize the smaller one with a 0 by 2 grid layout, where 0 is dynamic
